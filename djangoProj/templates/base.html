@@ -67,17 +67,26 @@
                             Post</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about"><i class="fas fa-user fa-fw mr-2"></i>About Me</a>
+                        <a class="nav-link" href="/about"><i class="fas fa-user fa-fw mr-2"></i>About Us</a>
                     </li>
                 </ul>
 
                 <div class="my-2 my-md-3">
-                    <a class="btn btn-primary" href="https://themes.3rdwavemedia.com/" target="_blank">Get in Touch</a>
+                    <a class="btn btn-primary" href="/contact">Contact Us</a>
                 </div>
             </div>
         </nav>
     </header>
-
+    <div class="main-wrapper">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+            <strong>Message: </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
     {% block body %} {% endblock body %}
 
     <!-- Javascript -->

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -152,3 +153,7 @@ TINYMCE_DEFAULT_CONFIG = {
     }
 
 TINYMCE_JS_URL = '//cdn.tinymce.com/4/tinymce.min.js'
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
