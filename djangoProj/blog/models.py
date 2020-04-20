@@ -1,5 +1,6 @@
 from django.db import models
 from tinymce import HTMLField
+from taggit.managers import TaggableManager
 
 # Create your models here.
 class Post(models.Model):
@@ -9,6 +10,7 @@ class Post(models.Model):
     content = HTMLField('content')
     author = models.CharField(max_length=20)
     slug = models.CharField(max_length=200)
+    tags = TaggableManager()
     timestamp = models.DateTimeField(blank=True)
     image = models.ImageField(upload_to ='uploads/')
 

@@ -1,7 +1,10 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,get_object_or_404
 from blog.models import Post
+from django.views.generic import ListView, DetailView,CreateView
 from blog.models import Contact
 from django.contrib import messages
+from taggit.models import Tag
+
 
 # Create your views here.
 def blogHome(request):
@@ -9,18 +12,37 @@ def blogHome(request):
     context = {'allPosts': allPosts}
     return render(request, 'blog/index.html',context)
 
-def blogList(request):
-    allPosts = Post.objects.all()
-    context = {'allPosts': allPosts}
-    return render(request, 'blog/blogList.html', context)
+# function based approach (old)
+# def blogList(request):
+#     allPosts = Post.objects.all()
+#     context = {'allPosts': allPosts}
+#     return render(request, 'blog/blogList.html', context)
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'blog/blogList.html'
+    context_object_name = 'allPosts'
+    ordering = ['-timestamp']
+    paginate_by = 3
+
+# function based approach (old)
+# def blogPost(request, slug):
+#     post = Post.objects.filter(slug=slug).first()
+#     context = {'post':post}
+#     return render(request, 'blog/blogPost.html',context)
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/blogPost.html'
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'content']
+
 
 def about(request):
     return render(request, 'blog/about.html')
 
-def blogPost(request, slug):
-    post = Post.objects.filter(slug=slug).first()
-    context = {'post':post}
-    return render(request, 'blog/blogPost.html',context)
 
 def search(request):
     query = request.GET['query']
@@ -49,3 +71,14 @@ def contact(request):
             contact.save()
             messages.success(request, "Your message has been sent")
     return render(request, 'blog/contact.html')
+
+
+def tagged(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    # Filter posts by tag name  
+    allPosts = Post.objects.filter(tags=tag)
+    context = {
+        'allPosts':allPosts,
+        'query':tag,
+    }
+    return render(request, 'blog/search.html', context)

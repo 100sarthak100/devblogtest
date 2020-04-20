@@ -22,13 +22,92 @@
 
     <!-- Theme CSS -->
     <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-    <link id="theme-style" rel="stylesheet" href="{% static  '/css/theme-4.css'%}">
-    <link rel="stylesheet" href="/static/css/tagsinput.css" />
+    <link id="theme-style" rel="stylesheet" href="{% static  '/css/theme-6.css'%}">
 </head>
 
 <body>
     {% load static %}
     <header class="header text-center">
+        <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Sarthak's Blog</a></h1>
+
+        <nav class="navbar navbar-expand-lg navbar-dark">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="navigation" class="collapse navbar-collapse flex-column">
+                <div class="profile-section pt-3 pt-lg-0">
+                    <img class="profile-image mb-3 rounded-circle mx-auto" src="{%static '/images/profile.png'%}"
+                        alt="image">
+
+                    <div class="bio mb-3">Hi, my name is Sarthak Naithani. I write about Competitive Coding
+                        , Datascience and Technology in general..<br><a href="about.html">Learn More</a></div>
+                    <!--//bio-->
+                    <ul class="social-list list-inline py-3 mx-auto">
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-github-alt fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-stack-overflow fa-fw"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fab fa-codepen fa-fw"></i></a></li>
+                    </ul>
+                    <!--//social-list-->
+                    <hr>
+                </div>
+                <!--//profile-section-->
+
+                <ul class="navbar-nav flex-column text-left">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/"><i class="fas fa-home fa-fw mr-2"></i>Blog Home <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blogList"><i class="fas fa-bookmark fa-fw mr-2"></i>Blog
+                            Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about"><i class="fas fa-user fa-fw mr-2"></i>About Us</a>
+                    </li>
+                </ul>
+
+                <div class="my-2 my-md-3">
+                    <a class="btn btn-primary" href="/contact">Contact Us</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main-wrapper">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+            <strong>Message: </strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% block body %} {% endblock body %}
+
+    <!-- Javascript -->
+    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{% static "tinymce/js/prism.js" %}"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+<header class="header text-center">
         <h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Tech Blog</a></h1>
 
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -95,47 +174,3 @@
         </nav>
 
     </header>
-    <div class="main-wrapper">
-        <nav class="navbar navbar-expand-lg navbar-navbar-light">
-            <a class="navbar-brand" href="/">TechBlog</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    
-                </ul>
-                <form method="get" action="/search" class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" id="query" name="query" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-        </nav>
-    </div>
-    <div class="main-wrapper">
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
-            <strong>Message: </strong> {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        {% endfor %}
-    </div>
-    {% block body %} {% endblock body %}
-
-    <!-- Javascript -->
-    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
-    <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="{% static "tinymce/js/prism.js" %}"></script>
-    <script src="/static/js/tagsinut.js"></script>
-
-</body>
-
-</html>

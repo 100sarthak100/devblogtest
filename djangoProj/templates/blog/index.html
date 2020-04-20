@@ -9,7 +9,7 @@
         <div class="container text-center">
             <h2 class="heading">Tech Blog</h2>
             <div class="intro">Welcome to my blog.</div>
-            <form method="get" action="/search"  class="signup-form form-inline justify-content-center pt-3">
+            <form method="get" action="/search" class="signup-form form-inline justify-content-center pt-3">
                 <div class="form-group">
                     <input type="search" id="query" name="query" aria-label="Search" class="form-control mr-md-1 semail"
                         placeholder="Type here to search">
@@ -27,13 +27,15 @@
                 <div class="media">
                     <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="media/{{ post.image }}" alt="image" />
                     <div class="media-body">
-                        <h3 class="title mb-1"><a href="/blog/{{post.slug}}">{{post.title}}</a>
+                         <div class="meta mb-1"><strong class="d-inline-block mb-2 text-warning">@{{post.author}} |</strong><span class="date" style="margin-left: 0.5em;">{{post.timestamp}}</span><span class="comment"><a
+                                    href="#">8 comments</a></span></div>
+                        <h3 class="title mb-1"><a href="/blog/{{post.sno}}">{{post.title}}</a>
                         </h3>
-                        <div class="meta mb-1"><span class="date">{{post.timestamp}}</span><span class="time">5
-                                min read</span><span class="comment"><a href="#">8 comments</a></span></div>
-                        
-                                    <div class="intro">{{post.content|safe | truncatechars:500}}</div>
-                        <a class="more-link" href="/blog/{{post.slug}}">Read more &rarr;</a>
+                        {% for tag in post.tags.all %}
+                                        <a href="#" class="mr-1 badge badge-secondary">#{{ tag }}</a>
+                        {% endfor %}
+                        <div class="intro">{{post.content|safe | truncatechars:500}}</div>
+                        <a class="more-link" href="/blog/{{post.sno}}">Read more &rarr;</a>
                     </div>
                     <!--//media-body-->
                 </div>
@@ -41,14 +43,6 @@
             </div>
             {% endfor %}
             <!--//item-->
-
-
-            <nav class="blog-nav nav nav-justified my-5">
-                <a class="nav-link-prev nav-item nav-link d-none rounded-left" href="#">Previous<i
-                        class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
-                <a class="nav-link-next nav-item nav-link rounded" href="blog-list.html">Next<i
-                        class="arrow-next fas fa-long-arrow-alt-right"></i></a>
-            </nav>
 
         </div>
     </section>
