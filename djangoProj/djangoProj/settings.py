@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'tinymce',
     'taggit',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -73,7 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djangoProj.wsgi.application'
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -158,3 +159,6 @@ TINYMCE_JS_URL = '//cdn.tinymce.com/4/tinymce.min.js'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+LOGIN_REDIRECT_URL = 'blogHome'
+LOGIN_URL = 'login'

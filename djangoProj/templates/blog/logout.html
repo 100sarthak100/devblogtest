@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Logout {% endblock title %}
+
+{% block body %}
+<div class="main-wrapper">
+    <section class="blog-list px-3 py-5 p-md-5">
+         <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+    </section>
+
+</div>
+
+{% endblock body %}

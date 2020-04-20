@@ -3,6 +3,7 @@ from django.urls import path
 from .views import PostListView, PostDetailView, PostCreateView
 from . import views
 
+
 urlpatterns = [
     path('',views.blogHome, name='blogHome'),
     #path('blogList/', views.blogList, name='blogList' ),
@@ -13,4 +14,5 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('contact', views.contact, name='contact'),
     path('blog/new/',PostCreateView.as_view(), name='post-create'),
+    path('register/', views.register, name='register'),
 ]
