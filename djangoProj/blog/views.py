@@ -37,7 +37,7 @@ class PostListView(ListView):
     template_name = 'blog/blogList.html'
     context_object_name = 'allPosts'
     ordering = ['-timestamp']
-    paginate_by = 3
+    paginate_by = 5
 
 # function based approach (old)
 # def blogPost(request, slug):
@@ -99,7 +99,8 @@ def search(request):
         allPostsTitle = Post.objects.filter(title__icontains=query)
         allPostsContent = Post.objects.filter(content__icontains=query)
         allPostsAuthor = Post.objects.filter(author__icontains=query)
-        allPosts = allPostsTitle.union(allPostsContent,allPostsAuthor)
+        allPostsTags = Post.objects.filter(tags__name=query)
+        allPosts = allPostsTitle.union(allPostsContent,allPostsAuthor,allPostsTags)
     if allPosts.count() == 0:
         messages.warning(request, "No search results found")
     params = {'allPosts': allPosts, 'query': query}
