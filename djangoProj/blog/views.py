@@ -1,11 +1,23 @@
 from django.shortcuts import render, HttpResponse,get_object_or_404,redirect
-from blog.models import Post
-from django.views.generic import ListView, DetailView,CreateView
+from blog.models import Post,Comment
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from blog.models import Contact
 from django.contrib import messages
 from taggit.models import Tag
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import (
+    UserRegisterForm,
+    UserUpdateForm, 
+    ProfileUpdateForm)
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 from django.contrib.auth.decorators import login_required
+from .forms import CommentForm
+from datetime import datetime
 
 
 # Create your views here.
@@ -37,9 +49,42 @@ class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/blogPost.html'
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content','tags']
+
+    def form_valid(self, form):
+        form.instance.author = str(self.request.user)
+        form.instance.timestamp = datetime.now()
+        form.save()
+        return super().form_valid(form)
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['title', 'content','tags']
+
+    def form_valid(self, form):
+        form.instance.author = str(self.request.user)
+        #form.instance.timestamp = datetime.now()
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if str(self.request.user) == str(post.author):
+            return True
+        return False
+
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if str(self.request.user) == str(post.author):
+            return True
+        return False
+
 
 
 def about(request):
@@ -120,3 +165,28 @@ def profile(request):
     }
 
     return render(request, 'blog/profile.html', context)
+
+@login_required
+def comment_approve(request, pk,):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.approve()
+    return redirect('blogPost', pk=comment.post.pk)
+
+@login_required
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect('blogPost', pk=comment.post.pk)
+
+def add_comment_to_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('blogPost', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment_to_post.html', {'form': form})

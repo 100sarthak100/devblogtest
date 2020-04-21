@@ -7,7 +7,14 @@
 <div class="main-wrapper">
 
 	<article class="blog-post px-3 py-5 p-md-5">
+
 		<div class="container">
+			{% if object.author == user.username %}
+			<div>
+				<a class="btn btn-secondary" href="{% url 'post-update' object.pk %}">Update</a>
+				<a class="btn btn-danger" href="{% url 'post-delete' object.pk %}">Delete</a>
+			</div>
+			{% endif %}
 			<header class="blog-post-header">
 				<h2 class="title mb-2">{{object.title}}</h2>
 				<div class="meta mb-1"><strong class="d-inline-block mb-2 text-warning">@{{object.author}}
@@ -26,6 +33,37 @@
 				<p>{{object.content|safe}}</p>
 
 			</div>
+			<div>
+				<h3 class="text-success">Comments</h3>
+				<hr />
+				<a class="btn btn-outline-success" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+				<ul class="comments">
+					{% for comment in post.comments.all %}
+					{% if user.is_authenticated or comment.approved_comment %}
+
+					{% if not comment.approved_comment %}
+					<a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span
+							class="glyphicon glyphicon-remove"></span></a>
+					<a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span
+							class="glyphicon glyphicon-ok"></span></a>
+					{% endif %}
+					<div class="post-comments">
+						<p class="meta mx-1">{{ comment.created_date }}<a href="#"
+								class="mx-2">@{{ comment.author }}</a> says : <i class="pull-right"><a href="#"></a></i>
+						</p>
+						<p>
+							{{ comment.text|linebreaks }}
+						</p>
+					</div>
+					{% endif %}
+					{% empty %}
+					<p>No comments here yet :(</>
+
+						{% endfor %}
+				</ul>
+			</div>
+
+
 		</div>
 		<!--//container-->
 	</article>
@@ -46,7 +84,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
 
 <!-- Custom JS -->
-<script src="assets/js/blog.js"></script>
+<script src="{% static '/js/blog.js'%}"></script>
 
 
 {% endblock body %}

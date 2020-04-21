@@ -1,6 +1,8 @@
 from django.db import models
 from tinymce import HTMLField
+from django.utils import timezone
 from taggit.managers import TaggableManager
+from django.urls import reverse
 from django.contrib.auth.models import User
 from PIL import Image
 
@@ -14,10 +16,16 @@ class Post(models.Model):
     slug = models.CharField(max_length=200)
     tags = TaggableManager()
     timestamp = models.DateTimeField(blank=True)
-    image = models.ImageField(upload_to ='uploads/')
+    image = models.ImageField(default='uploads/default.jpg',upload_to ='uploads/')
 
     def __str__(self):
         return self.title + ' by ' + self.author
+
+    def get_absolute_url(self):
+        return reverse('blogPost', kwargs={'pk': self.pk})
+
+    def approved_comments(self):
+        return self.comments.filter(approved_comment=True)
 
     def save(self):
         super().save()
@@ -58,3 +66,18 @@ class Profile(models.Model):
             output_size = (300,300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
+    author = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+    approved_comment = models.BooleanField(default=False)
+
+    def approve(self):
+        self.approved_comment = True
+        self.save()
+
+    def __str__(self):
+        return self.text
