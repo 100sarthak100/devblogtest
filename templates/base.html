@@ -24,10 +24,10 @@
 
     <!-- Theme CSS -->
 
-    <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
-    <link id="theme-style" rel="stylesheet" href="{% static  '/css/theme-1.css'%}">
-    <link rel="stylesheet" href="/static/css/tagsinput.css" />
-    <link rel="stylesheet" href="/static/css/jumbo.css" />
+    <link href="{% static 'blog/tinymce/css/prism.css' %}" rel="stylesheet">
+    <link id="theme-style" rel="stylesheet" href="{% static  'blog/css/theme-1.css'%}">
+    <link rel="stylesheet" href="{%static '/blog/css/tagsinut.css'%}" />
+    {% comment %} <link rel="stylesheet" href="/blog/css/jumbo.css" /> {% endcomment %}
 </head>
 
 <body>
@@ -124,11 +124,11 @@
     </div>
 
     <!-- Javascript -->
-    <script src="{% static '/plugins/jquery-3.3.1.min.js'%}"></script>
-    <script src="{% static '/plugins/popper.min.js'%}"></script>
-    <script src="{% static '/plugins/bootstrap/js/bootstrap.min.js'%}"></script>
-    <script src="{% static "tinymce/js/prism.js" %}"></script>
-    <script src="/static/js/tagsinut.js"></script>
+    <script src="{% static 'blog/plugins/jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static 'blog/plugins/popper.min.js'%}"></script>
+    <script src="{% static 'blog/plugins/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="{% static "blog/tinymce/js/prism.js" %}"></script>
+    <script src="{%static "/blog/js/tagsinut.js"%}"></script>
 
 </body>
 
