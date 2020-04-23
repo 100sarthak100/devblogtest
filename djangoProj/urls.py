@@ -23,6 +23,9 @@ from blog import views
 from django.contrib.sitemaps.views import sitemap
 from blog.sitemaps import PostSitemap,StaticViewSitemap
 
+from django.conf.urls import url
+from chat import views as chat_views
+
 sitemaps = {
     'posts': PostSitemap,
     'static': StaticViewSitemap,
@@ -37,6 +40,8 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='blog/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='blog/logout.html'), name='logout'),
+
+    url(r'^chat/', include('chat.urls')),
 ]
 
 if settings.DEBUG:
@@ -48,4 +53,9 @@ if settings.DEBUG:
 admin.site.site_title = "Developer's Blog"
 admin.site.site_header = "DevBlog Admin"
 admin.site.index_title = "DevBlog"
+
+
+
+
+
 

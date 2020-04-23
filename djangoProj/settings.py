@@ -25,8 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #SECRET_KEY = '0v4%a84s7b%9iupsri-eg=l0$wxe_)gyifcns%1jg=5wixm+o9'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+DEBUG = True
+#DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['devblogapp.herokuapp.com','www.mydevblog.me','mydevblog.me']
 
@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'tinymce',
     'taggit',
     'crispy_forms',
+    'channels',
+    'chat',
 ]
 
 SITE_ID = 1
@@ -183,4 +185,19 @@ MESSAGE_TAGS = {
 LOGIN_REDIRECT_URL = 'blogHome'
 LOGIN_URL = 'login'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
+
+# Channels
+ASGI_APPLICATION = "djangoProj.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        },
+    },
+}
+
+IS_CI = os.environ.get('IS_CI', False)
+if not IS_CI:
+    django_heroku.settings(locals())
