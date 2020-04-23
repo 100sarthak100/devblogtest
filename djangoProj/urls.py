@@ -20,9 +20,17 @@ from django.conf.urls.static import static
 from django.urls import path,include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from blog import views
+from django.contrib.sitemaps.views import sitemap
+from blog.sitemaps import PostSitemap,StaticViewSitemap
+
+sitemaps = {
+    'posts': PostSitemap,
+    'static': StaticViewSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sitemap.xml', sitemap, {'sitemaps':sitemaps}),
     path('',include('blog.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('profile/', views.profile, name='profile'),
