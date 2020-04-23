@@ -189,12 +189,23 @@ LOGIN_URL = 'login'
 
 # Channels
 ASGI_APPLICATION = "djangoProj.routing.application"
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             #"hosts": [("localhost", 6379)],
+#             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+#         },
+#     },
+# }
+
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+    "default": {
+        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get('REDISCLOUD_URL', 'redis://localhost:6379')],
         },
+        "ROUTING": "chat.routing.channel_routing",
     },
 }
 
