@@ -4,9 +4,9 @@ from django.utils.safestring import mark_safe
 import json
 
 def index(request):
-    return render(request, 'chat/chatindex.html', {})
+    return render(request, 'blog/chatindex.html', {})
 
 def room(request, room_name):
-    return render(request, 'chat/chatroom.html', {
+    return render(request, 'blog/chatroom.html', {
         'room_name_json': mark_safe(json.dumps(room_name))
     })
