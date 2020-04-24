@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'djangoProj.wsgi.application'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-import dj_database_url
+#import dj_database_url
 
 DATABASES = {
     'default': {
@@ -97,7 +97,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-dj_database_url.config(default=os.environ.get(DATABASE_URL))
+#dj_database_url.config(default=os.environ.get(DATABASE_URL))
 
 
 # Password validation
