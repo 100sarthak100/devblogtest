@@ -38,6 +38,7 @@ class ChatConsumer(WebsocketConsumer):
                 'message': message
             }
         )
+        #close_old_connections()
 
     # Receive message from room group
     def chat_message(self, event):
