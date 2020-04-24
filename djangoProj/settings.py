@@ -89,7 +89,8 @@ WSGI_APPLICATION = 'djangoProj.wsgi.application'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
