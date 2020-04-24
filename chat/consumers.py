@@ -2,6 +2,7 @@
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 import json
+from django.db import close_old_connections
 
 
 class ChatConsumer(WebsocketConsumer):
@@ -38,7 +39,7 @@ class ChatConsumer(WebsocketConsumer):
                 'message': message
             }
         )
-        #close_old_connections()
+        close_old_connections()
 
     # Receive message from room group
     def chat_message(self, event):
