@@ -12,7 +12,7 @@
             <div class="item mb-5">
 
                 <div class="media">
-                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="/media/{{ post.image }}" alt="image" />
+                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="{{MEDIA_URL}}{{ post.image }}" alt="image" />
                     <div class="media-body">
                         <div class="meta mb-1"><strong class="d-inline-block mb-2 text-warning">@{{post.author}}
                                 |</strong><span class="date" style="margin-left: 0.5em;">{{post.timestamp}}</span><span
