@@ -212,8 +212,8 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
 AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = 'public-read'
-#AWS_DEFAULT_ACL = None
+#AWS_DEFAULT_ACL = 'public-read'
+AWS_DEFAULT_ACL = None
 
 #DEFAULT_FILE_STORAGE = 'djangoProj.s3utils.MediaRootS3BotoStorage'
 #STATICFILES_STORAGE = 'myproyect.s3utils.StaticRootS3BotoStorage'
