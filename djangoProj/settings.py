@@ -65,8 +65,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
 ROOT_URLCONF = 'djangoProj.urls'
 
 TEMPLATES = [
@@ -225,9 +225,10 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # 'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 # )
 
-S3_URL = 'https://' + AWS_STORAGE_BUCKET_NAME + '.s3.us-west-2.amazonaws.com/'
+S3_URL = str('https://' + AWS_STORAGE_BUCKET_NAME + '.s3.us-west-2.amazonaws.com/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+#print(str(S3_URL))
 #STATIC_URL = 'https://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
 #MEDIA_URL = S3_URL + 'media/'
 MEDIA_URL = S3_URL
