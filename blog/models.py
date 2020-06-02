@@ -16,7 +16,7 @@ class Post(models.Model):
     slug = models.CharField(max_length=200)
     tags = TaggableManager()
     timestamp = models.DateTimeField(blank=True)
-    image = models.ImageField(default='uploads/default.jpg',upload_to ='uploads/')
+    image = models.CharField(max_length=255)
 
     def __str__(self):
         return self.title + ' by ' + self.author
