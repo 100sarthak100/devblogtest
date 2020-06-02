@@ -225,7 +225,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # 'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 # )
 
-S3_URL = str('https://' + AWS_STORAGE_BUCKET_NAME + '.s3.us-west-2.amazonaws.com/')
+#S3_URL = str('https://' + AWS_STORAGE_BUCKET_NAME + '.s3.us-west-2.amazonaws.com/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 #print(str(S3_URL))
