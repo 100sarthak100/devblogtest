@@ -3,18 +3,23 @@
 <html lang="en">
 
 <head>
-    <title>Programming Blog|
+    <title>Developer's Blog|
         {% block title %}{% endblock title %}
     </title>
 
     <!-- Meta -->
     
+    meta name="description" content="{% block meta %}{% endblock meta %}">
     <meta name="google-site-verification" content="JrFtV23oqiHmMD9j0o45VQHPCMTB0wM1MIxIP3KhSnw" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Developer's Blog | programming tutorials, competitive programming, python, django,C++,web development">
-    <meta name="author" content="Sarthak">
+    
+    {% comment %} <meta name="description" content="A Competitive Programming portal for computer science enthusiast. It contains well written and well explained articles on 
+    competitive programming, tutorials on various current technologies & framework like django, pytorch, flask etc. , and tips for aceing the coding interview. We also post articles on Leetcode 
+    Monthly challenge with well written and well explained solutions. 
+    This is a goto website any computer science geek."> {% endcomment %}
+    <meta name="author" content="SarthakNaithani">
     <link rel="shortcut icon" href="{% static 'blog/images/favicon.ico'%}">
 
     <!-- FontAwesome JS-->
