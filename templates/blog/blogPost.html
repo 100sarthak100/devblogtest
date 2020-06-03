@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block meta %}{{object.content|safe | truncatechars:500}}{% endblock meta %}
+{% block meta %}{{object.title }} {{object.content|safe | truncatechars:500}}{% endblock meta %}
 
 {% block title %} Practice Questions | Tutorials {% endblock title %}
 
