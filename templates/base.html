@@ -8,37 +8,45 @@
     </title>
 
     <!-- Meta -->
-    
+
     <meta name="description" content="{% block meta %}{% endblock meta %}">
     <meta name="keywords" content="{% block keywords %} {% endblock keywords %}" />
     <meta name="google-site-verification" content="JrFtV23oqiHmMD9j0o45VQHPCMTB0wM1MIxIP3KhSnw" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    {% comment %} <meta name="description" content="A Competitive Programming portal for computer science enthusiast. It contains well written and well explained articles on 
+
+    {% comment %}
+    <meta name="description" content="A Competitive Programming portal for computer science enthusiast. It contains well written and well explained articles on 
     competitive programming, tutorials on various current technologies & framework like django, pytorch, flask etc. , and tips for aceing the coding interview. We also post articles on Leetcode 
     Monthly challenge with well written and well explained solutions. 
     This is a goto website any computer science geek."> {% endcomment %}
     <meta name="author" content="SarthakNaithani">
-    <link rel="shortcut icon" href="{% static 'blog/images/favicon.ico'%}">
+
 
     <!-- FontAwesome JS-->
+    {% load static compress %}
+    
     <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
         integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous">
     </script>
+    
 
     <!-- Theme CSS -->
-
+    
+    {% compress css %}
+    <link rel="shortcut icon" href="{% static 'blog/images/favicon.ico'%}">
     <link href="{% static 'blog/tinymce/css/prism.css' %}" rel="stylesheet">
     <link id="theme-style" rel="stylesheet" href="{% static  'blog/css/theme-1.css'%}">
     <link rel="stylesheet" href="{%static '/blog/css/tagsinut.css'%}" />
+    {% endcompress %}
     {% comment %}
     <link rel="stylesheet" href="/blog/css/jumbo.css" /> {% endcomment %}
 </head>
 
 <body>
-    {% load static %}
+    {% comment %} {% load static %} {% endcomment %}
+    {% load static compress %}
     <div class="min-page-height">
         <div>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark"">
@@ -64,7 +72,7 @@
 
                     </ul>
                     <div class="navbar-nav">
-                        
+
                         {% if user.is_authenticated %}
                         <a class="nav-link" href="/blog/new">NewPost<span class="sr-only">(current)</span></a>
                         <a class="nav-link"" href=" {% url 'profile' %}">Profile<span
@@ -118,9 +126,9 @@
                                     </a>
                                     <a class="list-group-item px-2 text-success" href="/contact">Contact Us
                                     </a>
-                                   
-                                        
-                                 
+
+
+
 
                                 </ul>
                             </div>
@@ -138,11 +146,13 @@
     </div>
 
     <!-- Javascript -->
+    {% compress js inline%}
     <script src="{% static 'blog/plugins/jquery-3.3.1.min.js'%}"></script>
     <script src="{% static 'blog/plugins/popper.min.js'%}"></script>
     <script src="{% static 'blog/plugins/bootstrap/js/bootstrap.min.js'%}"></script>
     <script src="{% static "blog/tinymce/js/prism.js" %}"></script>
     <script src="{% static "/blog/js/tagsinut.js"%}"></script>
+    {% endcompress %}
 
 </body>
 
