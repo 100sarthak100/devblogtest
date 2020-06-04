@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %} {{object.title }} {% endblock title %}
 {% block meta %}{{object.title }} {{object.content|safe |striptags | truncatechars:500}}{% endblock meta %}
+{% block keywords %}{{ tag }} {% endblock keywords %}
 
 {% block title %} Practice Questions | Tutorials {% endblock title %}
 
