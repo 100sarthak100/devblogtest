@@ -28,6 +28,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 #DEBUG = False
 DEBUG = int(os.environ.get('DEBUG_VALUE', 0)) 
 #DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = ['https://mydevblog.me/','devblogapp.herokuapp.com','www.mydevblog.me','mydevblog.me']
 
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.redirects',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'tinymce',
@@ -65,10 +68,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.gzip.GZipMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+
 ROOT_URLCONF = 'djangoProj.urls'
 
 TEMPLATES = [
