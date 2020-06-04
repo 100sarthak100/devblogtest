@@ -26,10 +26,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
-#DEBUG = int(os.environ.get('DEBUG_VALUE', 0)) 
-DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT = True
+DEBUG = int(os.environ.get('DEBUG_VALUE', 0)) 
+#DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = ['https://mydevblog.me/','devblogapp.herokuapp.com','www.mydevblog.me','mydevblog.me']
 
