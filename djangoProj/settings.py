@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
 DEBUG = int(os.environ.get('DEBUG_VALUE', 0)) 
-# DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+#DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['https://mydevblog.me/','devblogapp.herokuapp.com','www.mydevblog.me','mydevblog.me']
 
@@ -67,8 +67,8 @@ MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
 ]
 
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 ROOT_URLCONF = 'djangoProj.urls'
 
 TEMPLATES = [
