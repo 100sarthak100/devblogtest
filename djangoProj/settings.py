@@ -23,7 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = '0v4%a84s7b%9iupsri-eg=l0$wxe_)gyifcns%1jg=5wixm+o9'
+
 SECRET_KEY = os.environ.get('SECRET_KEY')
+#62b7c2cc9fd8b6b5148514d25d2c3fab3c0ee121e7b98b52
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
 DEBUG = int(os.environ.get('DEBUG_VALUE', 0)) 
@@ -73,6 +75,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -83,6 +86,16 @@ MIDDLEWARE = [
     'django.middleware.gzip.GZipMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
+
+SECURE_HSTS_SECONDS = 30
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
 
 
 ROOT_URLCONF = 'djangoProj.urls'
