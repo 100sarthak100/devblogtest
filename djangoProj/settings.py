@@ -28,10 +28,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 #62b7c2cc9fd8b6b5148514d25d2c3fab3c0ee121e7b98b52
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
-DEBUG = int(os.environ.get('DEBUG_VALUE', 0)) 
-#DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+#DEBUG = int(os.environ.get('DEBUG_VALUE', 0)) 
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = ['https://mydevblog.me/','devblogapp.herokuapp.com','www.mydevblog.me','mydevblog.me']
 
