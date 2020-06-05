@@ -100,7 +100,7 @@ SESSION_COOKIE_SECURE = True
 CSP_DEFAULT_SRC = ("'none'", )
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
 CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", 'https://use.fontawesome.com/releases/v5.7.1/js/all.js','http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js')
-CSP_IMG_SRC = ("'self'", 'data:', 'https://d1i3u25q3vqyd2.cloudfront.net/',)
+CSP_IMG_SRC = ("'self'", 'data:', 'https://d1i3u25q3vqyd2.cloudfront.net/', 'https://django-blogdata-datafile.s3-us-west-2.amazonaws.com/uploads/')
 CSP_FONT_SRC = ("'self'", 'data:', 'https://use.fontawesome.com/releases/v5.7.1/js/all.js')
 
 
