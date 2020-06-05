@@ -2,7 +2,7 @@
 {% comment %} {% load static %} {% endcomment %}
 {% load static compress %}
 {% block title %} {{object.title }} {% endblock title %}
-{% block meta %}{{object.title }} {{object.content|safe |striptags | truncatechars:200}}{% endblock meta %}
+{% block meta %}{{object.title }} {{object.content|safe |striptags | truncatechars:250}}{% endblock meta %}
 {% block keywords %}{% for tag in post.tags.all %} {{ tag }},{% endfor %} {% endblock keywords %}
 
 {% comment %} {% block title %} Practice Questions | Tutorials {% endblock title %} {% endcomment %}
