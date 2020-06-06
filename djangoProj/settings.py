@@ -28,10 +28,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 #62b7c2cc9fd8b6b5148514d25d2c3fab3c0ee121e7b98b52
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
-DEBUG = int(os.environ.get('DEBUG_VALUE', 0)) 
-#DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+#DEBUG = int(os.environ.get('DEBUG_VALUE', 0)) 
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = ['https://mydevblog.me/','devblogapp.herokuapp.com','www.mydevblog.me','mydevblog.me']
 
@@ -97,11 +97,12 @@ X_FRAME_OPTIONS = 'DENY'
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
-CSP_DEFAULT_SRC = ("'none'", )
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
-CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", 'https://use.fontawesome.com/releases/v5.7.1/js/all.js','http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js')
-CSP_IMG_SRC = ("'self'", 'data:', 'https://d1i3u25q3vqyd2.cloudfront.net/', 'https://django-blogdata-datafile.s3-us-west-2.amazonaws.com/uploads/')
-CSP_FONT_SRC = ("'self'", 'data:', 'https://use.fontawesome.com/releases/v5.7.1/js/all.js')
+CSP_DEFAULT_SRC = ("'none'",)
+CSP_FRAME_SRC = ("'self'", 'http://www.youtube.com/',)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", 'http://cdn.tinymce.com/4/skins/lightgray/skin.min.css', 'http://cdn.tinymce.com/4/skins/lightgray/content.min.css', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', 'http://cdn.tinymce.com/4/plugins/codesample/css/prism.css', )
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", 'http://cdn.tinymce.com/4/tinymce.min.js', 'https://use.fontawesome.com/releases/v5.7.1/js/all.js','http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js')
+CSP_IMG_SRC = ("'self'", 'data:', 'https://i.ytimg.com/vi/d6MNjUE9s-o/','https://d1i3u25q3vqyd2.cloudfront.net/', 'https://django-blogdata-datafile.s3-us-west-2.amazonaws.com/uploads/')
+CSP_FONT_SRC = ("'self'", 'data:', 'https://use.fontawesome.com/releases/v5.7.1/js/all.js', 'http://cdn.tinymce.com/4/skins/lightgray/fonts/tinymce.woff', 'http://cdn.tinymce.com/4/skins/lightgray/fonts/tinymce.ttf', 'http://cdn.tinymce.com/4/skins/lightgray/fonts/tinymce-small.woff', 'http://cdn.tinymce.com/4/skins/lightgray/fonts/tinymce-small.ttf', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff2', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.woff', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/fonts/glyphicons-halflings-regular.ttf')
 
 
 ROOT_URLCONF = 'djangoProj.urls'
