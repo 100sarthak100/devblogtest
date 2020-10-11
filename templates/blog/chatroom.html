@@ -1,39 +1,16 @@
 <!-- chat/templates/chat/room.html -->
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <title>Chat Room</title>
-    <!-- FontAwesome JS-->
+    <meta charset="utf-8"/>
+    <title>Developers Blog | Chat Room</title>
 </head>
-
 <body>
-
-  
-            <h3>Welcome to The Lobby</h3><br />
-            
-                <textarea style="font-size: 18px; font-weight: bold" class="form-control" id="chat-log" cols="100" rows="10"></textarea>
-            </br>
-                <input id="chat-message-input" style="font-size: 18px" placeholder="Write text here..." type="text" size="100"/>
-
-            
-
-            <button type="submit" id="chat-message-submit" value="Send" class="btn btn-primary">Send</button>
-
-            
-
-
-
-
-
-
-            
-
-
-
+    <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
+    <input id="chat-message-input" type="text" size="100"/><br/>
+    <input id="chat-message-submit" type="button" value="Send"/>
 </body>
-    <script>
+<script>
     var roomName = {{ room_name_json }};
 
     var protocol = '';
@@ -50,7 +27,7 @@
     chatSocket.onmessage = function(e) {
         var data = JSON.parse(e.data);
         var message = data['message'];
-        document.querySelector('#chat-log').value += ('>> ' + message + '\n');
+        document.querySelector('#chat-log').value += (message + '\n');
     };
 
     chatSocket.onclose = function(e) {
@@ -74,6 +51,4 @@
         messageInputDom.value = '';
     };
 </script>
-
-
 </html>
