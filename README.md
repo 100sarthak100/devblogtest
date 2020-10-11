@@ -1,3 +1,7 @@
+#Blogging Website using Django Framework
+
+![mainPage](images/main2.PNG)
+
 ### Clone the Repo
 ```
 git clone https://github.com/100sarthak100/devblogtest.git
@@ -9,6 +13,9 @@ git clone https://github.com/100sarthak100/devblogtest.git
 virtualenv env
 env\Scripts\activate // to activate the env
 ```
+
+![envStart](images/envStart.PNG)
+
 ### Install the libraries 
 ```
 pip install rcssmin --install-option="--without-c-extensions"
@@ -38,6 +45,7 @@ pip install --upgrade -r requirements.txt
 ```
 pip freeze
 ```
+![pipFreeze](images/pipFreeze.PNG)
 
 #### If you got any error installing the libraries, do them individually, and then comment them out from requirements.txt file.
 
@@ -72,4 +80,6 @@ python manage.py createsuperuser -> provide username and password
 `
 python manage.py runserver
 `
+![server](images/serverStart.PNG)
+
 ### open this `http://127.0.0.1:8000/` in the incognito window.
