@@ -1,4 +1,4 @@
-#Blogging Website using Django Framework
+# Blogging Website using Django Framework
 
 ![mainPage](images/main2.PNG)
 
