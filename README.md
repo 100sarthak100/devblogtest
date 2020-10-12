@@ -62,7 +62,7 @@ SESSION_COOKIE_SECURE = True
 S3_URL = 'https://' + AWS_STORAGE_BUCKET_NAME + '.s3.us-west-2.amazonaws.com/'
 MEDIA_URL = S3_URL
 ```
--  Un-comment out these lines (use CTRL F to search the text) -
+-  Un-comment out these lines (use CTRL F to search the text) 
 ```
 SECRET_KEY = '0v4%a84s7b%9iupsri-eg=l0$wxe_)gyifcns%1jg=5wixm+o9'
 DEBUG = False
